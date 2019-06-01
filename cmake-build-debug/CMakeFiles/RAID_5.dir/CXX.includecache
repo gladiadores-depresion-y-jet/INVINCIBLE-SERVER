@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/Disk.h
+FilePart.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/FilePart.h
+../Structures/List.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/Structures/List.h
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/FilePart.h
+string
+-
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/RAID_Controller.cpp
+RAID_Controller.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/RAID_Controller.h
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/RAID_Controller.h
+../Structures/List.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/Structures/List.h
+Disk.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/RAID/Disk.h
+dirent.h
+-
+bits/stdc++.h
+-
+iostream
+-
+sys/stat.h
+-
+sys/types.h
+-
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/Structures/List.h
+Node.h
+/home/dcamachog1501/Induced_Desktop/RAID_5/Structures/Node.h
+
+/home/dcamachog1501/Induced_Desktop/RAID_5/Structures/Node.h
+
