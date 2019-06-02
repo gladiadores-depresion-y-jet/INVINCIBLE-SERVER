@@ -5,6 +5,8 @@
 #ifndef RAID_5_LIST_H
 #define RAID_5_LIST_H
 #include "Node.h"
+#include <iostream>
+using namespace std;
 template <class T>
 class List
 {
@@ -125,6 +127,53 @@ public:
         {
             del(1);
         }
+    }
+    void setHead(Node<T>* h)
+    {
+        this->head=h;
+    }
+    void release(int o)
+    {
+        Node<T>* temp=this->head;
+        if(temp->getOrder()==o)
+        {
+            this->head=temp->getNext();
+            Node<T>* temp2= this->head;
+            while(temp2!= nullptr)
+            {
+                temp2->setOrder(temp2->getOrder()-1);
+                temp2=temp2->getNext();
+            }
+            temp2= nullptr;
+            delete(temp2);
+        }
+        else
+        {
+            while (temp->getNext()->getOrder() != o)
+            {
+                temp = temp->getNext();
+            }
+            Node<T> *temp2 = temp->getNext();
+            temp->setNext(temp2->getNext());
+            temp = temp->getNext();
+            while (temp != nullptr) {
+                temp->setOrder(temp->getOrder() - 1);
+                temp = temp->getNext();
+            }
+            delete (temp);
+        }
+        this->length--;
+    }
+    void adjustSize()
+    {
+        Node<T>* temp= this->head;
+        int cont=0;
+        while(temp!= nullptr)
+        {
+            cont++;
+            temp=temp->getNext();
+        }
+        cout<<"Real Size: "<<to_string(cont)<<endl;
     }
 };
 

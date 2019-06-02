@@ -123,6 +123,87 @@ RAID_5/fast:
 	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/build
 .PHONY : RAID_5/fast
 
+Huffman_Compressor/Compressor.o: Huffman_Compressor/Compressor.cpp.o
+
+.PHONY : Huffman_Compressor/Compressor.o
+
+# target to build an object file
+Huffman_Compressor/Compressor.cpp.o:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o
+.PHONY : Huffman_Compressor/Compressor.cpp.o
+
+Huffman_Compressor/Compressor.i: Huffman_Compressor/Compressor.cpp.i
+
+.PHONY : Huffman_Compressor/Compressor.i
+
+# target to preprocess a source file
+Huffman_Compressor/Compressor.cpp.i:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.i
+.PHONY : Huffman_Compressor/Compressor.cpp.i
+
+Huffman_Compressor/Compressor.s: Huffman_Compressor/Compressor.cpp.s
+
+.PHONY : Huffman_Compressor/Compressor.s
+
+# target to generate assembly for a file
+Huffman_Compressor/Compressor.cpp.s:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.s
+.PHONY : Huffman_Compressor/Compressor.cpp.s
+
+Huffman_Compressor/Huffman_Node.o: Huffman_Compressor/Huffman_Node.cpp.o
+
+.PHONY : Huffman_Compressor/Huffman_Node.o
+
+# target to build an object file
+Huffman_Compressor/Huffman_Node.cpp.o:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o
+.PHONY : Huffman_Compressor/Huffman_Node.cpp.o
+
+Huffman_Compressor/Huffman_Node.i: Huffman_Compressor/Huffman_Node.cpp.i
+
+.PHONY : Huffman_Compressor/Huffman_Node.i
+
+# target to preprocess a source file
+Huffman_Compressor/Huffman_Node.cpp.i:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.i
+.PHONY : Huffman_Compressor/Huffman_Node.cpp.i
+
+Huffman_Compressor/Huffman_Node.s: Huffman_Compressor/Huffman_Node.cpp.s
+
+.PHONY : Huffman_Compressor/Huffman_Node.s
+
+# target to generate assembly for a file
+Huffman_Compressor/Huffman_Node.cpp.s:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.s
+.PHONY : Huffman_Compressor/Huffman_Node.cpp.s
+
+Huffman_Compressor/Huffman_Tree.o: Huffman_Compressor/Huffman_Tree.cpp.o
+
+.PHONY : Huffman_Compressor/Huffman_Tree.o
+
+# target to build an object file
+Huffman_Compressor/Huffman_Tree.cpp.o:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o
+.PHONY : Huffman_Compressor/Huffman_Tree.cpp.o
+
+Huffman_Compressor/Huffman_Tree.i: Huffman_Compressor/Huffman_Tree.cpp.i
+
+.PHONY : Huffman_Compressor/Huffman_Tree.i
+
+# target to preprocess a source file
+Huffman_Compressor/Huffman_Tree.cpp.i:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.i
+.PHONY : Huffman_Compressor/Huffman_Tree.cpp.i
+
+Huffman_Compressor/Huffman_Tree.s: Huffman_Compressor/Huffman_Tree.cpp.s
+
+.PHONY : Huffman_Compressor/Huffman_Tree.s
+
+# target to generate assembly for a file
+Huffman_Compressor/Huffman_Tree.cpp.s:
+	$(MAKE) -f CMakeFiles/RAID_5.dir/build.make CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.s
+.PHONY : Huffman_Compressor/Huffman_Tree.cpp.s
+
 Main/main.o: Main/main.cpp.o
 
 .PHONY : Main/main.o
@@ -267,6 +348,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... RAID_5"
 	@echo "... edit_cache"
+	@echo "... Huffman_Compressor/Compressor.o"
+	@echo "... Huffman_Compressor/Compressor.i"
+	@echo "... Huffman_Compressor/Compressor.s"
+	@echo "... Huffman_Compressor/Huffman_Node.o"
+	@echo "... Huffman_Compressor/Huffman_Node.i"
+	@echo "... Huffman_Compressor/Huffman_Node.s"
+	@echo "... Huffman_Compressor/Huffman_Tree.o"
+	@echo "... Huffman_Compressor/Huffman_Tree.i"
+	@echo "... Huffman_Compressor/Huffman_Tree.s"
 	@echo "... Main/main.o"
 	@echo "... Main/main.i"
 	@echo "... Main/main.s"

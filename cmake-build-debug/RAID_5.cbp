@@ -84,6 +84,24 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Compressor.cpp">
+			<Option target="RAID_5"/>
+		</Unit>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Compressor.h">
+			<Option target="RAID_5"/>
+		</Unit>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Node.cpp">
+			<Option target="RAID_5"/>
+		</Unit>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Node.h">
+			<Option target="RAID_5"/>
+		</Unit>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Tree.cpp">
+			<Option target="RAID_5"/>
+		</Unit>
+		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Tree.h">
+			<Option target="RAID_5"/>
+		</Unit>
 		<Unit filename="/home/dcamachog1501/Induced_Desktop/RAID_5/Main/main.cpp">
 			<Option target="RAID_5"/>
 		</Unit>

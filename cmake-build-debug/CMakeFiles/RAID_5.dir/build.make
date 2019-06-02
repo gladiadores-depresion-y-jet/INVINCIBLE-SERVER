@@ -122,13 +122,55 @@ CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dcamachog1501/Induced_Desktop/RAID_5/RAID/FilePart.cpp -o CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.s
 
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o: CMakeFiles/RAID_5.dir/flags.make
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o: ../Huffman_Compressor/Huffman_Tree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dcamachog1501/Induced_Desktop/RAID_5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o -c /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Tree.cpp
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Tree.cpp > CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.i
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Tree.cpp -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.s
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o: CMakeFiles/RAID_5.dir/flags.make
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o: ../Huffman_Compressor/Compressor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dcamachog1501/Induced_Desktop/RAID_5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o -c /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Compressor.cpp
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Compressor.cpp > CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.i
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Compressor.cpp -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.s
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o: CMakeFiles/RAID_5.dir/flags.make
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o: ../Huffman_Compressor/Huffman_Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dcamachog1501/Induced_Desktop/RAID_5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o -c /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Node.cpp
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Node.cpp > CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.i
+
+CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dcamachog1501/Induced_Desktop/RAID_5/Huffman_Compressor/Huffman_Node.cpp -o CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.s
+
 # Object files for target RAID_5
 RAID_5_OBJECTS = \
 "CMakeFiles/RAID_5.dir/Main/main.cpp.o" \
 "CMakeFiles/RAID_5.dir/RAID/Disk.cpp.o" \
 "CMakeFiles/RAID_5.dir/RAID/RAID_Controller.cpp.o" \
 "CMakeFiles/RAID_5.dir/Structures/Matrix.cpp.o" \
-"CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.o"
+"CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.o" \
+"CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o" \
+"CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o" \
+"CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o"
 
 # External object files for target RAID_5
 RAID_5_EXTERNAL_OBJECTS =
@@ -138,9 +180,12 @@ RAID_5: CMakeFiles/RAID_5.dir/RAID/Disk.cpp.o
 RAID_5: CMakeFiles/RAID_5.dir/RAID/RAID_Controller.cpp.o
 RAID_5: CMakeFiles/RAID_5.dir/Structures/Matrix.cpp.o
 RAID_5: CMakeFiles/RAID_5.dir/RAID/FilePart.cpp.o
+RAID_5: CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Tree.cpp.o
+RAID_5: CMakeFiles/RAID_5.dir/Huffman_Compressor/Compressor.cpp.o
+RAID_5: CMakeFiles/RAID_5.dir/Huffman_Compressor/Huffman_Node.cpp.o
 RAID_5: CMakeFiles/RAID_5.dir/build.make
 RAID_5: CMakeFiles/RAID_5.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dcamachog1501/Induced_Desktop/RAID_5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable RAID_5"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dcamachog1501/Induced_Desktop/RAID_5/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable RAID_5"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RAID_5.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

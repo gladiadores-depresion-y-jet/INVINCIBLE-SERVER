@@ -13,14 +13,18 @@ class Disk
 {
     private:
         int diskN;
-        int fileN;
+        int regfileN;
         int parityN;
         List <FilePart*>* fileColumn;
 
     public:
         Disk(int dNumb);
-        void fileCounter();
         void parityCounter();
+        int getDiskN();
+        int getFileN();
+        int getParityN();
+        List<FilePart*>* getfileColumn();
+        void print();
 
 
 };

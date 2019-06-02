@@ -15,6 +15,7 @@ class FilePart
         int filePartN;
     public:
         FilePart(int fNumb, string fNam);
+        FilePart(string fNam);
         string getFileName();
         int getFilePartN();
 
