@@ -36,86 +36,78 @@ void Compressor::compress(vector<char> digits)
             found.push_back(digits.at(i));
         }
     }
-    List<Huffman_Node*>HuffList= VecToList(output);
-    HuffList=sort(HuffList);
-    Node<Huffman_Node*>* temp=HuffList.getHead();
-    while(HuffList.getLength()>=2)
+    List<Huffman_Node*>*HuffList= VecToList(output);
+    while(HuffList->getLength()>=2)
     {
-        
+        HuffList=sort(HuffList);
         Huffman_Node::Character c= Huffman_Node::Character();
-        c.setTimes(temp->getValue()->getValue()->getTimes()+temp->getNext()->getValue()->getValue()->getTimes());
+        c.setTimes(HuffList->getHead()->getValue()->getValue()->getTimes()+HuffList->getHead()->getNext()->getValue()->getValue()->getTimes());
         c.setDigit(nullptr);
         Huffman_Node *n= new Huffman_Node(c);
-        n->setRight(temp->getValue());
-        n->setleft(temp->getNext()->getValue());
-        HuffList.release(temp->getNext()->getOrder());
-        HuffList.release(temp->getOrder());
-        
-        HuffList.add(n);
-        if(HuffList.getLength()>2)
-            HuffList=sort(HuffList);
-
-        temp=HuffList.getHead();
-        
+        n->setRight(HuffList->getHead()->getValue());
+        n->setleft(HuffList->getHead()->getNext()->getValue());
+        HuffList->delFirst();
+        HuffList->delFirst();
+        HuffList->add(n);
     }
     Huffman_Tree HuffTree= Huffman_Tree();
-    HuffTree.setTop(HuffList.getHead()->getValue());
+    HuffTree.setTop(HuffList->getHead()->getValue());
     vector<Code> codified=codifier(HuffTree,output);
-    //print(codified,digits);
+    print(codified,digits);
     string codigote=encoder(codified,digits);
-    //cout<<"Codigote: "<<codigote<<endl;
+    cout<<"Codigote: "<<codigote<<endl;
 
 
 
 
 }
 
-List<Huffman_Node*> Compressor::VecToList(vector<Huffman_Node::Character> vec)
+List<Huffman_Node*>* Compressor::VecToList(vector<Huffman_Node::Character> vec)
 {
-    List<Huffman_Node*>out= List<Huffman_Node*>();
+    List<Huffman_Node*>*out= new List<Huffman_Node*>();
     for(int i= 0;i<vec.size();i++)
     {
         Huffman_Node* h= new Huffman_Node(vec.at(i));
-        out.add(h);
+        out->add(h);
     }
     return out;
 }
 
-List<Huffman_Node*> Compressor::sort(List<Huffman_Node*> list)
+List<Huffman_Node*>* Compressor::sort(List<Huffman_Node*>* list)
 {
-    Node<Huffman_Node*>* temp= list.getHead();
-    while(temp!= nullptr)
+    Node<Huffman_Node*>* temp= list->getHead();
+    while((temp->getNext()!= nullptr)&&(temp->getNext()->getNext()!= nullptr))
     {
-        if(temp->getValue()->getValue()->getDigit()==list.getHead()->getValue()->getValue()->getDigit())
+        bool cond=((temp->getNext()->getValue()->getValue()->getTimes()==temp->getNext()->getNext()->getValue()->getValue()->getTimes())&&(temp->getNext()->getValue()->getValue()->getDigit()!=nullptr)&&(temp->getNext()->getNext()->getValue()->getValue()->getDigit()==nullptr));
+        if(temp->getValue()->getValue()->getDigit()==list->getHead()->getValue()->getValue()->getDigit())
         {
-            if(temp->getValue()->getValue()->getTimes()>temp->getNext()->getValue()->getValue()->getTimes())
+            bool subcond=((temp->getValue()->getValue()->getTimes()==temp->getNext()->getValue()->getValue()->getTimes())&&(temp->getNext()->getValue()->getValue()->getDigit()==nullptr)&&(temp->getValue()->getValue()->getDigit()!=nullptr));
+            bool altercond=(temp->getValue()->getValue()->getTimes())>(temp->getNext()->getValue()->getValue()->getTimes());
+            if(altercond||subcond)
             {
-                list.setHead(temp->getNext());
+                list->setHead(temp->getNext());
                 temp->setNext(temp->getNext()->getNext());
-                list.getHead()->setNext(temp);
-                temp=list.getHead();
+                list->getHead()->setNext(temp);
+                temp=list->getHead();
             }
         }
         if(temp->getNext()->getNext()!= nullptr)
         {
-            if (temp->getNext()->getNext()->getValue()->getValue()->getTimes() <
-                temp->getNext()->getValue()->getValue()->getTimes()) {
+            if ((temp->getNext()->getNext()->getValue()->getValue()->getTimes()<temp->getNext()->getValue()->getValue()->getTimes())||cond)
+            {
                 Node<Huffman_Node *> *temp2 = temp->getNext()->getNext();
                 temp->getNext()->setNext(temp2->getNext());
                 temp2->setNext(temp->getNext());
                 temp->setNext(temp2);
-                temp = list.getHead();
+                temp = list->getHead();
             }
             else
             {
                 temp=temp->getNext();
             }
         }
-        else
-        {
-            break;
-        }
     }
+    list->arrange();
     return list;
 }
 
@@ -158,20 +150,22 @@ string Compressor::backTrackCoder(char key, Huffman_Node* temp,string code)
     }
     else
     {
-        if(backTrackCoder(key,temp->getRight(),code+"1")=="-1")
+        string ret=backTrackCoder(key,temp->getRight(),code+"1");
+        if(ret=="-1")
         {
-            if(backTrackCoder(key,temp->getLeft(),code+"0")=="-1")
+            string retleft=backTrackCoder(key,temp->getLeft(),code+"0");
+            if(retleft=="-1")
             {
                 return "-1";
             }
             else
             {
-                return backTrackCoder(key,temp->getLeft(),code+"0");
+                return retleft;
             }
         }
         else
         {
-            return backTrackCoder(key,temp->getRight(),code+"1");
+            return ret;
         }
     }
 }

@@ -39,8 +39,8 @@ class Compressor
         };
         Compressor();
         void compress(vector<char> digits);
-        List<Huffman_Node*> VecToList(vector<Huffman_Node::Character> vec);
-        List<Huffman_Node*> sort(List<Huffman_Node*> list);
+        List<Huffman_Node *> * VecToList(vector<Huffman_Node::Character> vec);
+        List<Huffman_Node*>* sort(List<Huffman_Node*>* list);
         vector<Code> codifier(Huffman_Tree tree,vector<Huffman_Node::Character> keys);
         void print(List<Huffman_Node*> list);
         string backTrackCoder(char key, Huffman_Node* temp,string code);

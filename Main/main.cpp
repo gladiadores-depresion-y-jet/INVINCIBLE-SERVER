@@ -8,12 +8,12 @@
 using namespace std;
 int main()
 {
-    auto *r= new RAID_Controller();
-    r->imageDecomposer("Prueba.jpg","Prueba.txt");
+    /*auto *r= new RAID_Controller();
+    r->imageDecomposer("Prueba.jpeg","Prueba2.txt");*/
 
-    /*auto c= new Compressor();
-    string s="Colapsar restos";
+    auto c= new Compressor();
+    string s="espasmo";
     vector<char> vec(s.length());
     copy(s.begin(),s.end(),vec.begin());
-    c->compress(vec);*/
+    c->compress(vec);
 }

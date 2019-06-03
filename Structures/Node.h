@@ -10,7 +10,7 @@ class Node
 {
 private:
     T value;
-    int order;
+    int *order;
     Node* next;
 public:
     /**
@@ -28,7 +28,7 @@ public:
     Node(T v,int o)
     {
         this->value=v;
-        this->order=o;
+        this->order=new int(o);
         this->next= nullptr;
     }
     /**
@@ -61,14 +61,14 @@ public:
      */
     int getOrder()
     {
-        return this->order;
+        return *this->order;
     }
     /**
      * Metodo para borrar todos los valores almacenados en el nodo.
      */
     void purge()
     {
-        this->order=0;
+        delete(this->order);
         this->value= nullptr;
         this->next= nullptr;
     }
@@ -78,7 +78,7 @@ public:
      */
     void setOrder(int o)
     {
-        this->order=o;
+        *this->order=o;
     }
 };
 

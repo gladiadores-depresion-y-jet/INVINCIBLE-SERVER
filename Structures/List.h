@@ -12,7 +12,7 @@ class List
 {
 private:
     Node<T>* head;
-    int length;
+    int* length;
     List<T>* next;
 public:
     /**
@@ -21,7 +21,7 @@ public:
     List()
     {
         this->head= nullptr;
-        this->length=0;
+        this->length=new int(0);
         this->next= nullptr;
     }
     /**
@@ -30,7 +30,7 @@ public:
      */
     void add(T v)
     {
-        Node<T>* n= new Node<T>(v,++length);
+        Node<T>* n= new Node<T>(v,++*this->length);
         if(this->head== nullptr)
         {
             this->head=n;
@@ -44,7 +44,6 @@ public:
             }
             temp->setNext(n);
         }
-
     }
     /**
      * Metodo para eliminar un valr de la lista.
@@ -58,32 +57,22 @@ public:
             this->head=temp->getNext();
             temp->purge();
             delete(temp);
-            Node<T>* temp2= this->head;
-            while(temp2!= nullptr)
-            {
-                temp2->setOrder(temp2->getOrder()-1);
-                temp2=temp2->getNext();
-            }
-            temp2= nullptr;
-            delete(temp2);
         }
         else
         {
-            while (temp->getNext()->getOrder() != o) {
+            while (temp->getNext()->getOrder() != o)
+            {
                 temp = temp->getNext();
             }
             Node<T> *temp2 = temp->getNext();
             temp->setNext(temp2->getNext());
             temp2->purge();
-            temp = temp->getNext();
-            while (temp != nullptr) {
-                temp->setOrder(temp->getOrder() - 1);
-                temp = temp->getNext();
-            }
-            delete (temp);
+            temp= nullptr;
+            delete(temp);
             delete (temp2);
         }
-        length--;
+        *this->length=*this->length-1;
+
     }
     /**
      * Metodo para obtener la lista qu ele sigue a la lista actual.
@@ -99,7 +88,7 @@ public:
      */
     int getLength()
     {
-        return this->length;
+        return *this->length;
     }
     /**
      * Metodo para establecer la lista que le sigue a la lista actual.
@@ -132,48 +121,28 @@ public:
     {
         this->head=h;
     }
-    void release(int o)
+    void arrange()
     {
-        Node<T>* temp=this->head;
-        if(temp->getOrder()==o)
+        Node<T>* temp2= this->head;
+        int newOrd=1;
+        while(temp2!= nullptr)
         {
-            this->head=temp->getNext();
-            Node<T>* temp2= this->head;
-            while(temp2!= nullptr)
-            {
-                temp2->setOrder(temp2->getOrder()-1);
-                temp2=temp2->getNext();
-            }
-            temp2= nullptr;
-            delete(temp2);
+            temp2->setOrder(newOrd);
+            temp2=temp2->getNext();
+            newOrd++;
         }
-        else
-        {
-            while (temp->getNext()->getOrder() != o)
-            {
-                temp = temp->getNext();
-            }
-            Node<T> *temp2 = temp->getNext();
-            temp->setNext(temp2->getNext());
-            temp = temp->getNext();
-            while (temp != nullptr) {
-                temp->setOrder(temp->getOrder() - 1);
-                temp = temp->getNext();
-            }
-            delete (temp);
-        }
-        this->length--;
+        temp2= nullptr;
+        delete(temp2);
     }
-    void adjustSize()
+    void delFirst()
     {
         Node<T>* temp= this->head;
-        int cont=0;
-        while(temp!= nullptr)
-        {
-            cont++;
-            temp=temp->getNext();
-        }
-        cout<<"Real Size: "<<to_string(cont)<<endl;
+        this->head=temp->getNext();
+        temp->purge();
+        delete(temp);
+        cout<<"\n"<<endl;
+        *this->length=*this->length-1;
+        arrange();
     }
 };
 
