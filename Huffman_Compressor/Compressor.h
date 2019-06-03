@@ -34,11 +34,69 @@ class Compressor
                 {
                     return this->character;
                 }
-
+        };
+        struct Codified_File
+        {
+            private:
+                string codigote;
+                string ext;
+                string name;
+                Huffman_Tree tree;
+        public:
+            Codified_File(string c, Huffman_Tree ht,string ext,string nam)
+            {
+                this->codigote=c;
+                this->tree=ht;
+                this->ext=ext;
+                this->name=nam;
+            }
+            string getCodigote()
+            {
+                return this->codigote;
+            }
+            Huffman_Tree getTree()
+            {
+                return this->tree;
+            }
+            string getExt()
+            {
+                return this->ext;
+            }
+            string getName()
+            {
+                return this->name;
+            }
+        };
+        struct Decodified_File
+        {
+            private:
+                vector<char> digits;
+                string ext;
+                string name;
+            public:
+                Decodified_File(vector<char> v,string ex,string n)
+                {
+                    this->digits=v;
+                    this->ext=ex;
+                    this->name=n;
+                }
+                vector<char> getDigits()
+                {
+                    return this->digits;
+                }
+                string getExt()
+                {
+                    return this->ext;
+                }
+                string getName()
+                {
+                    return this->name;
+                }
 
         };
         Compressor();
-        void compress(vector<char> digits);
+        Codified_File* compress(vector<char> digits,string ext,string nam);
+        Decodified_File* decompress(Codified_File* code);
         List<Huffman_Node *> * VecToList(vector<Huffman_Node::Character> vec);
         List<Huffman_Node*>* sort(List<Huffman_Node*>* list);
         vector<Code> codifier(Huffman_Tree tree,vector<Huffman_Node::Character> keys);

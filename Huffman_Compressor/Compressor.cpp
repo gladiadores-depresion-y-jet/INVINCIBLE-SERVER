@@ -13,7 +13,7 @@ Compressor::Compressor()
 
 }
 
-void Compressor::compress(vector<char> digits)
+Compressor::Codified_File* Compressor::compress(vector<char> digits,string ext,string name)
 {
     vector<Huffman_Node::Character> output;
     vector<char> found;
@@ -56,10 +56,8 @@ void Compressor::compress(vector<char> digits)
     print(codified,digits);
     string codigote=encoder(codified,digits);
     cout<<"Codigote: "<<codigote<<endl;
-
-
-
-
+    Codified_File* out= new Codified_File(codigote,HuffTree,ext,name);
+    return out;
 }
 
 List<Huffman_Node*>* Compressor::VecToList(vector<Huffman_Node::Character> vec)
@@ -209,3 +207,37 @@ string Compressor::encoder(vector<Compressor::Code> codes, vector<char>keys)
     cout<<"Compressed bit size:"<<out.size()<<endl;
     return out;
 }
+
+Compressor::Decodified_File* Compressor::decompress(Compressor::Codified_File* code)
+{
+    vector<char> out;
+    int i=0;
+    while(i<(code->getCodigote().size()))
+    {
+        char act=code->getCodigote().at(i);
+        Huffman_Node* temp=code->getTree().getTop();
+        while(temp->getValue()->getDigit()==nullptr)
+        {
+            if(act=='1')
+            {
+                temp=temp->getRight();
+            }
+            else if(act=='0')
+            {
+                temp=temp->getLeft();
+            }
+            if((i+1)==code->getCodigote().size())
+            {
+                i++;
+                break;
+            }
+            act=code->getCodigote().at(++i);
+        }
+        out.push_back(*temp->getValue()->getDigit());
+    }
+
+    cout<<"Tamano del archivo descomprimido: "<<out.size()<<" Bytes"<<endl;
+    Decodified_File* dec= new Decodified_File(out,code->getExt(),code->getName());
+    return dec;
+}
+

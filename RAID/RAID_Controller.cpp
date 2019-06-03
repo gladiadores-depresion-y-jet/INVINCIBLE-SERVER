@@ -117,8 +117,11 @@ Disk *RAID_Controller::diskGetter(int diskN)
     return nullptr;
 }
 
-void RAID_Controller::imageDecomposer(string dir,string newName)
+Compressor::Codified_File* RAID_Controller::imageDecomposer(string dir)
 {
+    vector<string> input;
+    boost::split(input,dir, boost::is_any_of("."));
+
     ifstream ifs(dir, ios::binary|ios::ate);
     ifstream::pos_type pos = ifs.tellg();
     char* buffer = new char[pos];
@@ -127,13 +130,15 @@ void RAID_Controller::imageDecomposer(string dir,string newName)
 
     std::vector<char> data(buffer, buffer+int(pos));
 
-    comp->compress(data);
+    Compressor::Codified_File* code=comp->compress(data,input.at(1),input.at(0));
+    return code;
+}
 
-
-
-    std::ofstream outfile (newName,std::ofstream::binary);
-    outfile.write (buffer,pos);
+void RAID_Controller::compose(Compressor::Decodified_File *DecFile)
+{
+    char* buffer = new char[DecFile->getDigits().size()];
+    std::ofstream outfile (DecFile->getName()+"_New.txt",std::ofstream::binary);
+    outfile.write (buffer,DecFile->getDigits().size());
     delete[] buffer;
     outfile.close();
-
 }

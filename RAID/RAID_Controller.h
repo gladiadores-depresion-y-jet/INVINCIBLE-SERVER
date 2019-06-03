@@ -30,10 +30,10 @@ class RAID_Controller
         bool dirCreator(const char* dir);
         void diskInitializer(bool exists);
         Disk* diskGetter(int diskN);
-        void imageDecomposer(string dir,string newName);
+        Compressor::Codified_File* imageDecomposer(string dir);
 
 
-
+    void compose(Compressor::Decodified_File *DecFile);
 };
 
 
