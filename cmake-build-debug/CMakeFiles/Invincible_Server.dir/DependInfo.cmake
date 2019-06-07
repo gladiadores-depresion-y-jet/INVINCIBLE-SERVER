@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kugelblitz/Documents/Invincible-Server/main.cpp" "/home/kugelblitz/Documents/Invincible-Server/cmake-build-debug/CMakeFiles/Invincible_Server.dir/main.cpp.o"
+  "/home/david/Documents/Invincible_Server/main.cpp" "/home/david/Documents/Invincible_Server/cmake-build-debug/CMakeFiles/Invincible_Server.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

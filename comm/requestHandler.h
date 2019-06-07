@@ -19,19 +19,21 @@ HTTP_PROTOTYPE(requestHandler);
     void onRequest(const Http::Request& request, Http::ResponseWriter response) {
         if (request.method() == Http::Method::Post) {
             if (request.resource() == "/repetir") {
+                std::cout << "recibida palabra " << request.query().get("hilera").get() << std::endl;
                 response.send(Pistache::Http::Code::Ok, request.query().get("hilera").get());
+
             }
             else if (request.resource() == "/numChars") {
                 int largo = request.query().get("numChars").get().length();
                 std::stringstream ss;
                 ss << largo;
-                response.send(Pistache::Http::Code::Ok, ss.str());
+                response.send(Http::Code::Ok, ss.str());
+                std::cout << "got a request with word " << ss.str() << std::endl;
             }
         }
         else {
-            response.send(Pistache::Http::Code::Ok, "<h1>Esta es la respuesta por defecto</h1>");
+            response.send(Http::Code::Ok, "<h1>Esta es la respuesta por defecto</h1>");
         }
-
     }
 };
 

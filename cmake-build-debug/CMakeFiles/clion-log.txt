@@ -1,4 +1,4 @@
-/home/kugelblitz/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/191.6707.69/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/kugelblitz/Documents/Invincible-Server
+/home/david/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.5429.37/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/david/Documents/Invincible_Server
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/kugelblitz/Documents/Invincible-Server/cmake-build-debug
+-- Build files have been written to: /home/david/Documents/Invincible_Server/cmake-build-debug
