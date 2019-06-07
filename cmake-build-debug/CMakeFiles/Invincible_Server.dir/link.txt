@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/Invincible_Server.dir/main.cpp.o  -o Invincible_Server 
+/usr/bin/c++  -g   CMakeFiles/Invincible_Server.dir/main.cpp.o  -o Invincible_Server  -L/home/kugelblitz/pistache/build/src -Wl,-rpath,/home/kugelblitz/pistache/build/src -lpistache 
