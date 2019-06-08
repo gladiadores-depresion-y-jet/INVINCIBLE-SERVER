@@ -18,9 +18,12 @@ HTTP_PROTOTYPE(requestHandler);
 
     void onRequest(const Http::Request& request, Http::ResponseWriter response) {
         if (request.method() == Http::Method::Post) {
+            std::string hilera = "hilera";
             if (request.resource() == "/INSERT") {
-                std::cout << "se repite palabra = " << request.query().get("hilera").get() << std::endl;
-                response.send(Pistache::Http::Code::Ok, request.query().get("hilera").get());
+                std::cout << "Este es el cuerpo = " << request.body() << std::endl;
+                std::string datos = request.query().get("hilera").get();
+                response.send(Pistache::Http::Code::Ok, datos);
+                std::cout << "se repite palabra = " << datos << std::endl;
             }
 
             else if (request.resource() == "/SELECT") {
