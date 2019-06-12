@@ -6,6 +6,7 @@ CMakeFiles/Invincible_Server.dir/comm/client/Requests.cpp.o
  /home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/Requests.h
  /home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/ResourceOfRequest.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o
+ ..//comm/client/Requests.h
  ..//comm/server/requestHandler.h
  ..//nlohmann/adl_serializer.hpp
  ..//nlohmann/detail/conversions/from_json.hpp
@@ -64,4 +65,5 @@ CMakeFiles/Invincible_Server.dir/main.cpp.o
  ..//pistache/type_checkers.h
  ..//pistache/typeid.h
  ..//pistache/view.h
+ ../comm/client/ResourceOfRequest.h
  /home/kugelblitz/Documents/INVINCIBLE-SERVER/main.cpp

@@ -5,6 +5,7 @@ CMakeFiles/Invincible_Server.dir/comm/client/Requests.cpp.o: ../comm/client/Requ
 CMakeFiles/Invincible_Server.dir/comm/client/Requests.cpp.o: ../comm/client/Requests.h
 CMakeFiles/Invincible_Server.dir/comm/client/Requests.cpp.o: ../comm/client/ResourceOfRequest.h
 
+CMakeFiles/Invincible_Server.dir/main.cpp.o: ../comm/client/Requests.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../comm/server/requestHandler.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../nlohmann/adl_serializer.hpp
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../nlohmann/detail/conversions/from_json.hpp
@@ -63,5 +64,6 @@ CMakeFiles/Invincible_Server.dir/main.cpp.o: ../pistache/transport.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../pistache/type_checkers.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../pistache/typeid.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../pistache/view.h
+CMakeFiles/Invincible_Server.dir/main.cpp.o: ../comm/client/ResourceOfRequest.h
 CMakeFiles/Invincible_Server.dir/main.cpp.o: ../main.cpp
 

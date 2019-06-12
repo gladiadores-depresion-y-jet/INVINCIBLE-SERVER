@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+..//comm/client/Requests.h
+iostream
+-
+string
+-
+sstream
+-
+curl/curl.h
+-
+ResourceOfRequest.h
+../comm/client/ResourceOfRequest.h
+
 ..//comm/server/requestHandler.h
 pistache/endpoint.h
 -
@@ -14,6 +26,8 @@ nlohmann/json.hpp
 iostream
 -
 sstream
+-
+comm/client/Requests.h
 -
 
 ..//nlohmann/adl_serializer.hpp
@@ -969,6 +983,8 @@ cstring
 -
 stdexcept
 -
+
+../comm/client/ResourceOfRequest.h
 
 /home/kugelblitz/Documents/INVINCIBLE-SERVER/main.cpp
 comm/server/requestHandler.h

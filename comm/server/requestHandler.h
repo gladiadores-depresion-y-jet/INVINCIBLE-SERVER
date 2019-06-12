@@ -21,12 +21,16 @@ HTTP_PROTOTYPE(requestHandler);
 
     void onRequest(const Http::Request& request, Http::ResponseWriter response) {
         std::string datos;
+        std::string metadataResponse;
+        std::string RAID5Response;
+        std::string respuesta = "false";
+
         if (request.method() == Http::Method::Post) {
             if (request.resource() == "/INSERT") {
-                std::string exitoso = "false";
                 datos = request.body();
-
+                std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
                 auto jsonRequest = json::parse(datos);
+
                 std::cout << "Se recibe json : " << jsonRequest.dump(4) << std::endl;
 
                 // Crea json para enviar a MetadataDB
@@ -37,7 +41,7 @@ HTTP_PROTOTYPE(requestHandler);
                 std::string metadataRequest = jsonMetadata.dump();
 
                 // Enviar metadata a metadatadb y recibir id
-                std::string metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, INSERT);
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, INSERT);
 
                 if (metadataResponse != "false") {
                     // Crea json para enviar a RAID5
@@ -47,63 +51,70 @@ HTTP_PROTOTYPE(requestHandler);
                     std::string raid5Request = jsonRAID5.dump();
 
                     // Enviar binario imagen y id a RAID5 y recibe confirmacion
-                    std::string RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, INSERT);
+                    RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, INSERT);
 
-                    exitoso = RAID5Response;
+                    respuesta = RAID5Response;
                 }
 
                 //Enviar confirmacion a cliente
-                response.send(Pistache::Http::Code::Ok, exitoso);
+                response.send(Pistache::Http::Code::Ok, respuesta);
             }
 
             else if (request.resource() == "/SELECT") {
                 datos = request.body();
-
+                std::cout << "Se recibe select request con cuerpo : " << datos << std::endl;
                 auto jsonRequest = json::parse(datos);
 
-                /*
-                 * Para accesar a parametros del json seria:
-                 * var valor = jsonRequest[nomDeLaLlave]
-                 */
+                std::string metadataRequest = jsonRequest.dump();
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, SELECT);
+                if (metadataResponse != "false") {
+                    auto jsonMetadata = json::parse(metadataResponse);
 
-                // TODO aqui debe estar logica del select
+                    json idJson;
+                    idJson = jsonMetadata["id"];
+                    std::string raid5Request = idJson.dump();
+                    RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, SELECT);
+                    if (RAID5Response != "false") {
+                        json jsonImage = json::parse(RAID5Response);
 
-                std::cout << "Se recibe select request" << std::endl;
+                        jsonMetadata["imagen"] = jsonImage["image"];
 
-                // TODO definir respuesta
-                response.send(Pistache::Http::Code::Ok, jsonRequest.dump(4));
+                        respuesta = jsonMetadata.dump();
+                    }
+                }
+
+                response.send(Pistache::Http::Code::Ok, respuesta);
             }
 
             else if (request.resource() == "/UPDATE") {
                 datos = request.body();
-
+                std::cout << "Se recibe update request con cuerpo : " << datos << std::endl;
                 auto jsonRequest = json::parse(datos);
 
-                /*
-                 * Para accesar a parametros del json seria:
-                 * var valor = jsonRequest[nomDeLaLlave]
-                 */
+                std::string temp = jsonRequest.dump();
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(temp, UPDATE);
+                if (metadataResponse != "false") {
+                    respuesta = metadataResponse;
+                }
 
-                // TODO aqui debe estar logica del update
-
-                // TODO definir respuesta
-                response.send(Pistache::Http::Code::Ok, jsonRequest.dump(4));
+                response.send(Pistache::Http::Code::Ok, metadataResponse);
             }
 
             else if (request.resource() == "/DELETE") {
+                // TODO adaptar para cuando se borra toda la galeria.
                 datos = request.body();
-
+                std::cout << "Se recibe delete request con cuerpo : " << datos << std::endl;
                 auto jsonRequest = json::parse(datos);
 
-                /*
-                 * Para accesar a parametros del json seria:
-                 * var valor = jsonRequest[nomDeLaLlave]
-                 */
-
-                // TODO aqui debe estar logica del delete
-
-                // TODO definir respuesta
-                response.send(Pistache::Http::Code::Ok, jsonRequest.dump(4));
+                std::string metadataRequest = jsonRequest.dump();
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, DELETE);
+                if (metadataResponse != "false") {
+                    RAID5Response = this->requestsRAID5->sendPostRequest(metadataResponse, DELETE);
+                    if (RAID5Response != "false") {
+                        respuesta = RAID5Response;
+                    }
+                }
+                response.send(Pistache::Http::Code::Ok, respuesta);
             }
 
         }
