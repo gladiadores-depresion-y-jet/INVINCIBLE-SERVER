@@ -1,0 +1,169 @@
+*importante!!!:
+los valores separados por comas no deben tener espacios en medio
+
+Para create:
+
+	1. JSON PARA SERVER
+		{table: nombreTable}
+
+	DEBE RETORNAR AL CLIENTE
+		Si es exitosa la creacion de galería:
+			true
+		Si no:
+			false
+
+	2. JSON PARA METADATADB
+		{table: nombreTable}
+	
+	DEBE RETORNAR AL CLIENTE
+			Si es exitosa la creacion de galería:
+				true
+			Si no:
+				false
+
+Para restore:
+	1. JSON PARA SERVER
+		[json definido por sing y garza n1]
+
+	DEBE RETORNAR AL CLIENTE
+		si es exitoso el restore
+			[json definido por sing y garzan2]
+		so no:
+			false
+
+	1. JSON PARA METADATADB
+		[json definido por sing y garza n1]
+
+		DEBE RETORNAR AL CLIENTE
+			si es exitoso el restore
+				[json definido por sing y garzan2]
+			so no:
+				false
+
+Para insert:
+	- SYNTHAX
+		INSERT INTO {nombre de la tabla} (col1,col2,...,coln) VALUES (valor1,valor2,...,valorn);
+	
+		+
+
+		Texto de imagen seleccionada por aparte
+	
+	1. JSON PARA SERVER	
+		{table: nomTable, cols: "col1,col2,coln", values: "value1,value2,valuen", imagen: textoImagen}
+
+	DEBE RETORNAR AL CLIENTE
+		Si es exitosa la inserción:
+			true
+		Si no:
+			false	
+
+	2. JSON PARA METADATADB
+		{table: nomTable, cols: "col1,col2,coln", values: "value1,value2,valuen"}
+
+	DEBE RETORNAR AL SERVIDOR
+		Si es exitosa la inserción:
+			{id: idImagen}
+		Si no:
+			false
+
+	3. JSON PARA RAID5
+		{id: idImagen, imagen: textoImagen}
+
+	DEBE RETORNAR AL SERVIDOR
+		Si es exitosa la inserción:
+			true
+		Si no:
+			false
+
+
+Para select:
+	- SYNTHAX		
+		SELECT (col1,col2,...coln) FROM {nombre de la table} WHERE {col} IN (value1,value2,...valuen);
+
+	1. JSON PARA SERVER
+		{table: nomTable, cols: "col1,col2,coln", where: {col: col, value: "value1,value2,...valuen}}
+
+	DEBE RETORNAR AL CLIENTE:
+		Si se logra encontrar:
+			{id: idImagen, name: nomImagen, author: autorImagen, year: añoImagen, size: tamañoImagen, description: descripImagen, imagen: textImage}
+		si no:
+			false
+
+	2. JSON PARA METADATADB
+		{table: nomTable, cols: "col1,col2,coln"}
+
+	DEBE RETORNARL AL SERVER
+		Si se logra encontrar:
+			{id: idImagen, name: nomImagen, author: autorImagen, year: añoImagen, size: tamañoImagen, description: descripImagen}
+		si no:
+			false
+
+	3. JSON PARA RAID5
+		{ID: idImagen}
+	
+	DEBE RETORNAR AL SERVIDOR
+		Si se logra encontrar:
+			{imagen: textImagen}
+		si no:
+			false
+
+Para update:
+	- SYNTHAX
+		UPDATE {nombre de la table} SET col1='valor1',col2='valor2,...,coln=valorn WHERE coln=valor;
+
+	1. JSON PARA SERVER
+		{table: nomTable, cols="col1,col2,...,coln" , values: "value1,value2,valuen", where: {col: col, value: value}}
+	
+	DEBE RETORNAR AL CLIENTE
+		Si se actualiza:
+			true
+		Si no:
+			false
+
+	2. JSON PARA METADATADB
+		{table: nomTable, cols="col1,col2,...,coln" , values: "value1,value2,valuen", where: {col: col, value: value}}
+
+	DEBE RETORNAAR AL CLIENTE
+		Si se actualiza:
+			true
+		Si no:
+			false
+
+
+Para delete:
+	- SYNTHAX
+		DELETE FROM {nombre de la table}
+		DELETE FROM {nombre de la table} WHERE coln=valor;
+	
+	1. JSON PARA SERVER
+		{table: nomTable, where: {col: col, value: value}}
+
+	DEBEN RETORNAR AL CLIENTE
+		Si se borra:
+			true
+		si no:
+			false
+
+	2. JSON PARA METADATADB
+		{table: nomTable, where: {col: col, value: value}}
+	
+	DEBE RETORNAR AL SERVIDOR
+		Si se borra:
+			{ID: idImagem}
+		si no:
+			false
+
+	3. JSON PARA RAID5
+		{ID: idImagem}
+	
+	DEBE RETORNAR AL SERVIDOR
+		Si se borra:
+			true
+		si no:
+			false
+
+
+		
+
+
+
