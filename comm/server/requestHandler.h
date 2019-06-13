@@ -17,8 +17,14 @@ using nlohmann::json;
 class requestHandler: public Http::Handler {
 public:
 
-HTTP_PROTOTYPE(requestHandler);
+    HTTP_PROTOTYPE(requestHandler);
 
+    /**
+     * Se encarga de manejar todos los pedidos HTTP al puerto donde se inicializa el servidor.
+     *
+     * @param request, contiene info del pedido recibido.
+     * @param response, permite responder al pedido.
+     */
     void onRequest(const Http::Request& request, Http::ResponseWriter response) {
         std::string datos;
         std::string metadataResponse;
@@ -40,6 +46,10 @@ HTTP_PROTOTYPE(requestHandler);
 
             else if (request.resource() == "/RESTORE") {
                 datos= request.body();
+
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, RESTORE);
+
+                response.send(Pistache::Http::Code::Ok, metadataResponse);
             }
 
             else if (request.resource() == "/INSERT") {
@@ -76,7 +86,7 @@ HTTP_PROTOTYPE(requestHandler);
             else if (request.resource() == "/SELECT") {
                 std::cout << "Se recibe select request con cuerpo : " << datos << std::endl;
 
-                std::string metadataRequest = jsonRequest.dump();
+                /*std::string metadataRequest = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, SELECT);
                 if (metadataResponse != "false") {
                     auto jsonMetadata = json::parse(metadataResponse);
@@ -92,7 +102,7 @@ HTTP_PROTOTYPE(requestHandler);
 
                         respuesta = jsonMetadata.dump();
                     }
-                }
+                }*/
 
                 response.send(Pistache::Http::Code::Ok, respuesta);
             }
@@ -132,11 +142,15 @@ HTTP_PROTOTYPE(requestHandler);
     }
 
 private:
+    /** Define ip y puerto de RAID5 */
     std::string *ipAddressRAID5 = new std::string("127.0.0.1"), *portRAID5 = new std::string("9081");
+    /** Define ip y puerto de MetadataDB */
     std::string *ipAddressMetadataDB = new std::string("127.0.0.1") ,*portMetadataDB = new std::string("9082");
 
-    Requests *requestsRAID5 = new Requests(*ipAddressRAID5, *portRAID5);
+    /** Permite hacer pedidos al RAID5 */
     Requests *requestsMetadataDB = new Requests(*ipAddressMetadataDB, *portMetadataDB);
+    /** Permite hacer pedidos a MetadataDB */
+    Requests *requestsRAID5 = new Requests(*ipAddressRAID5, *portRAID5);
 };
 
 #endif //INVINCIBLE_SERVER_REQUESTHANDLER_H
