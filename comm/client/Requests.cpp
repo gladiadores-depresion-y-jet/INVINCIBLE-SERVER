@@ -3,6 +3,7 @@
 //
 
 #include "Requests.h"
+
 Requests::Requests(std::string &ipAddress, std::string &port) {
     this->ipAddress = &ipAddress;
     this->port = &port;
@@ -22,6 +23,12 @@ std::string Requests::sendPostRequest(std::string &data, ResourceOfRequest resou
     std::string request;
 
     switch (resourceOfRequest) {
+        case CREATE:
+            request = "CREATE";
+            break;
+        case RESTORE:
+            request = "RESTORE";
+            break;
         case INSERT:
             request = "INSERT";
             break;
@@ -60,6 +67,7 @@ std::string Requests::sendPostRequest(std::string &data, ResourceOfRequest resou
 
         // cleanup for next request
         curl_easy_cleanup(this->curl);
+
     }
     curl_global_cleanup();
 

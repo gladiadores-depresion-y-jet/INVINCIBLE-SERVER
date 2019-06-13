@@ -26,12 +26,24 @@ HTTP_PROTOTYPE(requestHandler);
         std::string respuesta = "false";
 
         if (request.method() == Http::Method::Post) {
-            if (request.resource() == "/INSERT") {
-                datos = request.body();
-                std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
-                auto jsonRequest = json::parse(datos);
+            datos = request.body();
+            auto jsonRequest = json::parse(datos);
 
-                std::cout << "Se recibe json : " << jsonRequest.dump(4) << std::endl;
+            if (request.resource() == "/CREATE") {
+                std::cout << "Se recibe create request con cuerpo : " << datos << std::endl;
+
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, CREATE);
+
+                response.send(Pistache::Http::Code::Ok, respuesta);
+
+            }
+
+            else if (request.resource() == "/RESTORE") {
+                datos= request.body();
+            }
+
+            else if (request.resource() == "/INSERT") {
+                std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
 
                 // Crea json para enviar a MetadataDB
                 json jsonMetadata;
@@ -42,7 +54,8 @@ HTTP_PROTOTYPE(requestHandler);
 
                 // Enviar metadata a metadatadb y recibir id
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, INSERT);
-
+                std::cout << "Respuesta de metadatadb : " <<  metadataResponse << std::endl;
+                /*
                 if (metadataResponse != "false") {
                     // Crea json para enviar a RAID5
                     json jsonRAID5;
@@ -54,16 +67,14 @@ HTTP_PROTOTYPE(requestHandler);
                     RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, INSERT);
 
                     respuesta = RAID5Response;
-                }
+                }*/
 
                 //Enviar confirmacion a cliente
                 response.send(Pistache::Http::Code::Ok, respuesta);
             }
 
             else if (request.resource() == "/SELECT") {
-                datos = request.body();
                 std::cout << "Se recibe select request con cuerpo : " << datos << std::endl;
-                auto jsonRequest = json::parse(datos);
 
                 std::string metadataRequest = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, SELECT);
@@ -87,9 +98,7 @@ HTTP_PROTOTYPE(requestHandler);
             }
 
             else if (request.resource() == "/UPDATE") {
-                datos = request.body();
                 std::cout << "Se recibe update request con cuerpo : " << datos << std::endl;
-                auto jsonRequest = json::parse(datos);
 
                 std::string temp = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(temp, UPDATE);
@@ -102,9 +111,7 @@ HTTP_PROTOTYPE(requestHandler);
 
             else if (request.resource() == "/DELETE") {
                 // TODO adaptar para cuando se borra toda la galeria.
-                datos = request.body();
                 std::cout << "Se recibe delete request con cuerpo : " << datos << std::endl;
-                auto jsonRequest = json::parse(datos);
 
                 std::string metadataRequest = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, DELETE);
@@ -125,10 +132,9 @@ HTTP_PROTOTYPE(requestHandler);
     }
 
 private:
-    std::string *ipAddressRAID5 = new std::string("127.0.0.1"),
-    *ipAddressMetadataDB = new std::string("127.0.0.1");
-    std::string *portRAID5 = new std::string("9081"),
-    *portMetadataDB = new std::string("9082");
+    std::string *ipAddressRAID5 = new std::string("127.0.0.1"), *portRAID5 = new std::string("9081");
+    std::string *ipAddressMetadataDB = new std::string("127.0.0.1") ,*portMetadataDB = new std::string("9082");
+
     Requests *requestsRAID5 = new Requests(*ipAddressRAID5, *portRAID5);
     Requests *requestsMetadataDB = new Requests(*ipAddressMetadataDB, *portMetadataDB);
 };

@@ -6,6 +6,8 @@
 #define INVINCIBLE_CLIENTLOGIC_RESOURCEOFREQUEST_H
 
 enum ResourceOfRequest {
+    CREATE,
+    RESTORE,
     INSERT,
     SELECT,
     UPDATE,

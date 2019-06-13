@@ -986,6 +986,24 @@ stdexcept
 
 ../comm/client/ResourceOfRequest.h
 
+/home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/Requests.cpp
+Requests.h
+/home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/Requests.h
+
+/home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/Requests.h
+iostream
+-
+string
+-
+sstream
+-
+curl/curl.h
+-
+ResourceOfRequest.h
+/home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/ResourceOfRequest.h
+
+/home/kugelblitz/Documents/INVINCIBLE-SERVER/comm/client/ResourceOfRequest.h
+
 /home/kugelblitz/Documents/INVINCIBLE-SERVER/main.cpp
 comm/server/requestHandler.h
 -
