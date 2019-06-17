@@ -31,32 +31,48 @@ public:
         std::string RAID5Response;
         std::string respuesta = "false";
 
+
         if (request.method() == Http::Method::Post) {
             datos = request.body();
-            auto jsonRequest = json::parse(datos);
+            json jsonRequest;
+            if (request.resource() == "/RESTORE") {
+                std::cout << "Se recibe restore request con cuerpo : " << datos << std::endl;
 
-            if (request.resource() == "/CREATE") {
+                json junk;
+                junk["algo"] = "algo";
+                std::string junkString = junk.dump();
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(junkString, RESTORE);
+
+                response.send(Pistache::Http::Code::Ok, metadataResponse);
+            }
+
+            else if (request.resource() == "/CREATE") {
                 std::cout << "Se recibe create request con cuerpo : " << datos << std::endl;
 
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, CREATE);
 
-                response.send(Pistache::Http::Code::Ok, respuesta);
-
+                response.send(Pistache::Http::Code::Ok, metadataResponse);
             }
 
             else if (request.resource() == "/RESTORE") {
                 datos= request.body();
 
+                std::cout << "llega request tipo restore" << std::endl;
+
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, RESTORE);
+
+                std::cout <<  "Enviando de vuelta a cliente : " << metadataResponse << std::endl;
 
                 response.send(Pistache::Http::Code::Ok, metadataResponse);
             }
 
             else if (request.resource() == "/INSERT") {
                 std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
+                jsonRequest = json::parse(datos);
 
                 // Crea json para enviar a MetadataDB
                 json jsonMetadata;
+
                 jsonMetadata["table"] = jsonRequest["table"];
                 jsonMetadata["cols"] = jsonRequest["cols"];
                 jsonMetadata["values"] = jsonRequest["values"];
@@ -86,9 +102,12 @@ public:
             else if (request.resource() == "/SELECT") {
                 std::cout << "Se recibe select request con cuerpo : " << datos << std::endl;
 
-                /*std::string metadataRequest = jsonRequest.dump();
+                jsonRequest = json::parse(datos);
+
+                std::string metadataRequest = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, SELECT);
-                if (metadataResponse != "false") {
+                std::cout << "Respuesta metadatadb" << metadataResponse << std::endl;
+                /*if (metadataResponse != "false") {
                     auto jsonMetadata = json::parse(metadataResponse);
 
                     json idJson;
@@ -110,8 +129,7 @@ public:
             else if (request.resource() == "/UPDATE") {
                 std::cout << "Se recibe update request con cuerpo : " << datos << std::endl;
 
-                std::string temp = jsonRequest.dump();
-                metadataResponse = this->requestsMetadataDB->sendPostRequest(temp, UPDATE);
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, UPDATE);
                 if (metadataResponse != "false") {
                     respuesta = metadataResponse;
                 }
