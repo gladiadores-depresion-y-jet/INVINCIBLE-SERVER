@@ -32,6 +32,9 @@ std::string Requests::sendPostRequest(std::string &data, ResourceOfRequest resou
         case INSERT:
             request = "INSERT";
             break;
+        case IMAGE:
+            request = "IMAGE";
+            break;
         case SELECT:
             request = "SELECT";
             break;

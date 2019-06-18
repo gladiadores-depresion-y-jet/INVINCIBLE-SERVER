@@ -2,7 +2,7 @@
 
 int main() {
     Address addr(Ipv4::any(), Port(9080));
-    auto opts = Http::Endpoint::options()
+    auto opts = Http::Endpoint::options().maxPayload(4000000000)
             .threads(1);
 
     Http::Endpoint server(addr);

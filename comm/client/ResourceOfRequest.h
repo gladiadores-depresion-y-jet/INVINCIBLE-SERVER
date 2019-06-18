@@ -9,6 +9,7 @@ enum ResourceOfRequest {
     CREATE,
     RESTORE,
     INSERT,
+    IMAGE,
     SELECT,
     UPDATE,
     DELETE

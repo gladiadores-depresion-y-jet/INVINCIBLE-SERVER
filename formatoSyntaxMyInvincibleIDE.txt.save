@@ -43,7 +43,7 @@ Para restore:
 Para insert:
 	- SYNTHAX
 		INSERT INTO {nombre de la tabla} (col1,col2,...,coln) VALUES (valor1,valor2,...,valorn);
-	
+
 		+
 
 		Texto de imagen seleccionada por aparte
@@ -87,7 +87,7 @@ Para select:
 		Si se logra encontrar:
 			{id: idImagen, name: nomImagen, author: autorImagen, year: añoImagen, size: tamañoImagen, description: descripImagen, imagen: textImage}
 		si no:
-			false
+			far;lse
 
 	2. JSON PARA METADATADB
 		{table: nomTable, cols: "col1,col2,coln"}

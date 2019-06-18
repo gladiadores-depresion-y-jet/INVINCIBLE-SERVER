@@ -68,35 +68,23 @@ public:
 
             else if (request.resource() == "/INSERT") {
                 std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
-                jsonRequest = json::parse(datos);
 
-                // Crea json para enviar a MetadataDB
-                json jsonMetadata;
-
-                jsonMetadata["table"] = jsonRequest["table"];
-                jsonMetadata["cols"] = jsonRequest["cols"];
-                jsonMetadata["values"] = jsonRequest["values"];
-                std::string metadataRequest = jsonMetadata.dump();
 
                 // Enviar metadata a metadatadb y recibir id
-                metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, INSERT);
+                metadataResponse = this->requestsMetadataDB->sendPostRequest(datos, INSERT);
                 std::cout << "Respuesta de metadatadb : " <<  metadataResponse << std::endl;
-                /*
-                if (metadataResponse != "false") {
-                    // Crea json para enviar a RAID5
-                    json jsonRAID5;
-                    jsonRAID5["imagen"] = jsonRequest["imagen"];
-                    jsonRAID5["id"] = metadataResponse;
-                    std::string raid5Request = jsonRAID5.dump();
 
-                    // Enviar binario imagen y id a RAID5 y recibe confirmacion
-                    RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, INSERT);
+                response.send(Pistache::Http::Code::Ok, metadataResponse);
+            }
 
-                    respuesta = RAID5Response;
-                }*/
+            else if (request.resource() == "/IMAGE") {
+                std::cout << "Se recibe insert request con cuerpo : " << datos << std::endl;
 
-                //Enviar confirmacion a cliente
-                response.send(Pistache::Http::Code::Ok, respuesta);
+
+                RAID5Response = requestsRAID5->sendPostRequest(datos, IMAGE);
+
+                response.send(Pistache::Http::Code::Ok, RAID5Response);
+
             }
 
             else if (request.resource() == "/SELECT") {
@@ -107,21 +95,13 @@ public:
                 std::string metadataRequest = jsonRequest.dump();
                 metadataResponse = this->requestsMetadataDB->sendPostRequest(metadataRequest, SELECT);
                 std::cout << "Respuesta metadatadb" << metadataResponse << std::endl;
-                /*if (metadataResponse != "false") {
-                    auto jsonMetadata = json::parse(metadataResponse);
 
-                    json idJson;
-                    idJson = jsonMetadata["id"];
-                    std::string raid5Request = idJson.dump();
-                    RAID5Response = this->requestsRAID5->sendPostRequest(raid5Request, SELECT);
+                if (metadataResponse != "false") {
+                    RAID5Response = this->requestsRAID5->sendPostRequest(metadataResponse, SELECT);
                     if (RAID5Response != "false") {
-                        json jsonImage = json::parse(RAID5Response);
-
-                        jsonMetadata["imagen"] = jsonImage["image"];
-
-                        respuesta = jsonMetadata.dump();
+                        respuesta = RAID5Response;
                     }
-                }*/
+                }
 
                 response.send(Pistache::Http::Code::Ok, respuesta);
             }
@@ -152,6 +132,7 @@ public:
                 response.send(Pistache::Http::Code::Ok, respuesta);
             }
 
+
         }
         else {
             std::cout << "se envio respuesta defeault" << std::endl;
@@ -161,7 +142,7 @@ public:
 
 private:
     /** Define ip y puerto de RAID5 */
-    std::string *ipAddressRAID5 = new std::string("127.0.0.1"), *portRAID5 = new std::string("9081");
+    std::string *ipAddressRAID5 = new std::string("192.168.100.4"), *portRAID5 = new std::string("9083");
     /** Define ip y puerto de MetadataDB */
     std::string *ipAddressMetadataDB = new std::string("127.0.0.1") ,*portMetadataDB = new std::string("9082");
 
